@@ -1,0 +1,20 @@
+{
+  "name": "youtube-connector",
+  "version": "0.0.1",
+  "description": "Testing youtube connector",
+  "main": "src/index.ts",
+  "author": "Dat Huynh",
+  "license": "UNLICENSED",
+  "scripts": {
+    "presetup": "yarn clasp login",
+    "setup": "yarn clasp create --type standalone --title 'Youtube Connector' --rootDir ./src",
+    "postsetup": "yarn move-file ./src/.clasp.json ./.clasp.json",
+    "build": "yarn clasp push"
+  },
+  "devDependencies": {
+    "@google/clasp": "^2.4.2",
+    "@types/google-apps-script": "^1.0.56",
+    "move-file-cli": "^3.0.0",
+    "typescript": "^4.8.4"
+  }
+}

@@ -21,17 +21,11 @@ const createReport = () => {
     const today = new Date();
     const lastMonth = new Date(today.getTime() - ONE_MONTH_IN_MS);
 
-    const metrics = [
-        "views",
-        "estimatedMinutesWatched",
-        "averageViewDuration",
-        "subscribersGained",
-    ];
     const result = YouTubeAnalytics.Reports.query({
         ids: "channel==" + channelId,
         startDate: formatDateString(lastMonth),
         endDate: formatDateString(today),
-        metrics: metrics.join(","),
+        metrics: METRICS.join(","),
         dimensions: "day",
         sort: "day",
     });
@@ -44,21 +38,23 @@ const createReport = () => {
         Logger.log("No columnHeaders returned.");
         return;
     }
-    const spreadsheet = SpreadsheetApp.create("YouTube Analytics Report");
-    const sheet = spreadsheet.getActiveSheet();
 
-    // Append the headers.
-    const headers = result.columnHeaders.map((columnHeader) => {
-        return formatColumnName(columnHeader.name || "");
-    });
-    sheet.appendRow(headers);
+    Logger.log(result);
+    // const spreadsheet = SpreadsheetApp.create("YouTube Analytics Report");
+    // const sheet = spreadsheet.getActiveSheet();
 
-    // Append the results.
-    sheet
-        .getRange(2, 1, result.rows.length, headers.length)
-        .setValues(result.rows);
+    // // Append the headers.
+    // const headers = result.columnHeaders.map((columnHeader) => {
+    //     return formatColumnName(columnHeader.name || "");
+    // });
+    // sheet.appendRow(headers);
 
-    Logger.log("Report spreadsheet created: %s", spreadsheet.getUrl());
+    // // Append the results.
+    // sheet
+    //     .getRange(2, 1, result.rows.length, headers.length)
+    //     .setValues(result.rows);
+
+    // Logger.log("Report spreadsheet created: %s", spreadsheet.getUrl());
 };
 
 /**

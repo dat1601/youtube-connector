@@ -1,6 +1,18 @@
 {
   "timeZone": "America/New_York",
   "dependencies": {
+    "enabledAdvancedServices": [
+      {
+        "userSymbol": "YouTubeAnalytics",
+        "version": "v2",
+        "serviceId": "youtubeAnalytics"
+      },
+      {
+        "userSymbol": "YouTube",
+        "version": "v3",
+        "serviceId": "youtube"
+      }
+    ]
   },
   "exceptionLogging": "STACKDRIVER",
   "runtimeVersion": "V8"
